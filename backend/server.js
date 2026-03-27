@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import path from 'path';
+import fs from 'fs';
 import { fileURLToPath } from 'url';
 
 // Import routes
@@ -43,6 +44,32 @@ app.use('/api/auth', authRoutes);
 app.use('/api/leads', leadsRoutes);
 app.use('/api/dashboard', dashboardRoutes);
 app.use('/api/activity', activityRoutes);
+
+// Serve frontend build files (supports both Vite: dist and CRA: build)
+const frontendDistPath = path.join(__dirname, '../frontend/dist');
+const frontendBuildPath = path.join(__dirname, '../frontend/build');
+const frontendStaticPath = fs.existsSync(frontendDistPath)
+  ? frontendDistPath
+  : fs.existsSync(frontendBuildPath)
+  ? frontendBuildPath
+  : null;
+
+if (frontendStaticPath) {
+  app.use(express.static(frontendStaticPath));
+}
+
+// For all non-API routes, return React index.html
+app.get('*', (req, res, next) => {
+  if (req.path.startsWith('/api')) {
+    return next();
+  }
+
+  if (!frontendStaticPath) {
+    return res.status(404).json({ error: 'Frontend build not found. Run frontend build first.' });
+  }
+
+  return res.sendFile(path.join(frontendStaticPath, 'index.html'));
+});
 
 // 404 handler
 app.use((req, res) => {
