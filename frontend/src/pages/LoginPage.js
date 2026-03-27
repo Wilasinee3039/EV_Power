@@ -16,10 +16,11 @@ const LoginPage = () => {
     setLoading(true);
 
     try {
-      await login(email, password);
+      await login(email.trim(), password);
       navigate('/dashboard');
     } catch (err) {
-      setError(err.message || 'Invalid credentials');
+      const message = typeof err === 'string' ? err : err?.message;
+      setError(message || 'Invalid credentials');
     } finally {
       setLoading(false);
     }
