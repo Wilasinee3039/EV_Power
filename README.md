@@ -2,6 +2,11 @@
 
 A comprehensive CRM (Customer Relationship Management) system for EV Power Energy built with React, Node.js/Express, and SQLite.
 
+## Deployed Demo URL
+ ```bash
+   https://ev-power-1.onrender.com
+   ```
+
 ## 🚀 Features
 
 - **User Authentication**: Secure login with JWT tokens and bcryptjs password hashing
@@ -174,38 +179,7 @@ After running `npm run db:seed` in the backend:
 ### Activity Tracking
 - Automatic logging on lead creation, update, and deletion
 - Tracks status changes separately from other updates
-- Records user who made the change and timestamp
-- Shows before/after values for status changes
-
-## 🧪 Testing
-
-### Test the API with curl or Postman:
-
-1. **Login:**
-   ```bash
-   curl -X POST http://localhost:5000/api/auth/login \
-     -H "Content-Type: application/json" \
-     -d '{"email":"test@evpower.com","password":"password123"}'
-   ```
-
-2. **Get Dashboard Stats:**
-   ```bash
-   curl http://localhost:5000/api/dashboard/stats \
-     -H "Authorization: Bearer YOUR_TOKEN"
-   ```
-
-3. **Get All Leads:**
-   ```bash
-   curl "http://localhost:5000/api/leads?status=New&page=1" \
-     -H "Authorization: Bearer YOUR_TOKEN"
-   ```
-
-### Test the UI:
-1. Open http://localhost:3000
-2. Login with test credentials
-3. Explore Dashboard, Leads, and Create new leads
-4. Click on leads to view details and activity log
-5. Edit fields directly in lead details view
+- Shows after values for status changes
 
 ## 📦 Database Schema
 
@@ -243,17 +217,12 @@ After running `npm run db:seed` in the backend:
 1. Push code to GitHub
 2. Connect GitHub repo to Render/Railway
 3. Set environment variables:
-   - `DATABASE_URL` - PostgreSQL connection string
    - `JWT_SECRET` - Random secret key
-   - `NODE_ENV` - production
-4. Deploy
-
-### Deploy Frontend (Vercel)
-
-1. Push code to GitHub
-2. Connect GitHub repo to Vercel
-3. Set environment variable:
-   - `REACT_APP_API_URL` - Production backend URL
+   - `NODE_ENV` - development
+   - `DEFAULT_ADMIN_EMAIL` - test@evpower.com
+   - `DEFAULT_ADMIN_NAME` - Test User
+   - `DEFAULT_ADMIN_PASSWORD` - password123
+   - `PORT` - 5000
 4. Deploy
 
 ## 🐛 Known Limitations (MVP)
@@ -262,25 +231,19 @@ After running `npm run db:seed` in the backend:
 - No real-time notifications
 - No email notifications
 - No file attachments
-- Search is case-sensitive
 - No bulk operations
-- SQLite for development only (use PostgreSQL for production)
+- SQLite for development only 
 
 ## 🔮 Future Enhancements
 
 - Role-based access control (Sales Rep, Manager, Admin)
-- WebSocket support for real-time updates
 - Email notifications on lead status changes
 - Advanced reporting and analytics
 - Lead assignment to team members
 - Custom fields and metadata
 - Integration with email/calendar services
 - Bulk import/export
-- Mobile app
 
-## 📝 License
-
-This project is part of the EV Power Energy CRM initiative.
 
 ## 👨‍💻 Development Notes
 
@@ -297,9 +260,3 @@ This project is part of the EV Power Energy CRM initiative.
 - **Backend**: Check terminal output (npm start)
 - **Database**: Inspect `db/crm.db` with SQLite client
 
-## 📧 Support
-
-For issues or questions, contact the development team.
-
-
-primary URL: https://ev-power-1.onrender.com
