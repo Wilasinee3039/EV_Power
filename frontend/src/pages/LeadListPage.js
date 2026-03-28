@@ -207,20 +207,20 @@ const LeadListPage = () => {
                 <button
                   onClick={() => setPage(Math.max(1, page - 1))}
                   disabled={page === 1}
-                  className="px-4 py-2 bg-gray-300 text-gray-700 rounded disabled:opacity-50 disabled:cursor-not-allowed w-full sm:w-auto"
+                  className="px-4 py-2 bg-gray-300 text-gray-700 rounded disabled:opacity-50 disabled:cursor-not-allowed w-full sm:w-auto order-1 sm:order-none"
                 >
                   Previous
                 </button>
-                <span className="text-gray-600">
-                  Page {page} of {totalPages}
-                </span>
                 <button
                   onClick={() => setPage(Math.min(totalPages, page + 1))}
                   disabled={page === totalPages}
-                  className="px-4 py-2 bg-green-600 text-white rounded disabled:opacity-50 disabled:cursor-not-allowed w-full sm:w-auto"
+                  className="px-4 py-2 bg-green-600 text-white rounded disabled:opacity-50 disabled:cursor-not-allowed w-full sm:w-auto order-2 sm:order-none"
                 >
                   Next
                 </button>
+                <span className="text-gray-600 order-3 sm:order-none text-center sm:text-left">
+                  Page {page} of {totalPages}
+                </span>
               </div>
             </>
           )}
