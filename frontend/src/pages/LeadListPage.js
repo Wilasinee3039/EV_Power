@@ -65,17 +65,17 @@ const LeadListPage = () => {
 
   return (
     <Layout>
-      <div className="min-h-screen bg-gradient-to-br from-amber-50 via-emerald-50 to-green-100 p-6">
+      <div className="min-h-screen bg-gradient-to-br from-amber-50 via-emerald-50 to-green-100 p-4 md:p-6">
         <div className="max-w-7xl mx-auto">
-          <div className="flex justify-between items-center mb-6">
-          <h1 className="text-3xl font-bold text-gray-900">Leads</h1>
-          <button
-            onClick={() => navigate('/leads/new')}
-            className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded transition font-semibold"
-          >
-            + New Lead
-          </button>
-        </div>
+          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 mb-6">
+            <h1 className="text-2xl md:text-3xl font-bold text-gray-900">Leads</h1>
+            <button
+              onClick={() => navigate('/leads/new')}
+              className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded transition font-semibold w-full sm:w-auto"
+            >
+              + New Lead
+            </button>
+          </div>
 
         {/* Search and Filters */}
         <div className="bg-white rounded-lg shadow p-4 mb-6">
@@ -113,7 +113,7 @@ const LeadListPage = () => {
             </select>
             <button
               onClick={clearFilters}
-              className="bg-gray-400 hover:bg-gray-500 text-white px-4 py-2 rounded-lg transition"
+              className="bg-gray-400 hover:bg-gray-500 text-white px-4 py-2 rounded-lg transition w-full md:w-auto"
             >
               Clear Filters
             </button>
@@ -132,7 +132,8 @@ const LeadListPage = () => {
             </div>
           ) : (
             <>
-              <table className="w-full">
+              <div className="overflow-x-auto">
+                <table className="w-full min-w-[760px]">
                 <thead className="bg-gray-100 border-b border-gray-200">
                   <tr>
                     <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Name</th>
@@ -176,7 +177,8 @@ const LeadListPage = () => {
                           {lead.status}
                         </span>
                       </td>
-                      <td className="px-6 py-4 text-sm flex gap-2">
+                      <td className="px-6 py-4 text-sm">
+                        <div className="flex gap-2">
                         <button
                           onClick={() => navigate(`/leads/${lead.id}`)}
                           className="text-blue-600 hover:text-blue-800 font-semibold"
@@ -192,18 +194,20 @@ const LeadListPage = () => {
                         >
                           Delete
                         </button>
+                        </div>
                       </td>
                     </tr>
                   ))}
                 </tbody>
-              </table>
+                </table>
+              </div>
 
               {/* Pagination */}
-              <div className="px-6 py-4 border-t border-gray-200 flex items-center justify-between">
+              <div className="px-4 md:px-6 py-4 border-t border-gray-200 flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between">
                 <button
                   onClick={() => setPage(Math.max(1, page - 1))}
                   disabled={page === 1}
-                  className="px-4 py-2 bg-gray-300 text-gray-700 rounded disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="px-4 py-2 bg-gray-300 text-gray-700 rounded disabled:opacity-50 disabled:cursor-not-allowed w-full sm:w-auto"
                 >
                   Previous
                 </button>
@@ -213,7 +217,7 @@ const LeadListPage = () => {
                 <button
                   onClick={() => setPage(Math.min(totalPages, page + 1))}
                   disabled={page === totalPages}
-                  className="px-4 py-2 bg-green-600 text-white rounded disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="px-4 py-2 bg-green-600 text-white rounded disabled:opacity-50 disabled:cursor-not-allowed w-full sm:w-auto"
                 >
                   Next
                 </button>
