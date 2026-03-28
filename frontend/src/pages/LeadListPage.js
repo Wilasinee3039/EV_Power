@@ -203,7 +203,7 @@ const LeadListPage = () => {
               </div>
 
               {/* Pagination */}
-              <div className="px-4 md:px-6 py-4 border-t border-gray-200 flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between">
+              <div className="px-4 md:px-6 py-4 border-t border-gray-200 flex flex-col sm:flex-row gap-10 sm:gap-6 sm:items-center sm:justify-between">
                 <button
                   onClick={() => setPage(Math.max(1, page - 1))}
                   disabled={page === 1}
@@ -211,16 +211,16 @@ const LeadListPage = () => {
                 >
                   Previous
                 </button>
+                <span className="text-gray-600 order-2 sm:order-none text-center sm:text-left">
+                  Page {page} of {totalPages}
+                </span>
                 <button
                   onClick={() => setPage(Math.min(totalPages, page + 1))}
                   disabled={page === totalPages}
-                  className="px-4 py-2 bg-green-600 text-white rounded disabled:opacity-50 disabled:cursor-not-allowed w-full sm:w-auto order-2 sm:order-none"
+                  className="px-4 py-2 bg-green-600 text-white rounded disabled:opacity-50 disabled:cursor-not-allowed w-full sm:w-auto order-3 sm:order-none"
                 >
                   Next
                 </button>
-                <span className="text-gray-600 order-3 sm:order-none text-center sm:text-left">
-                  Page {page} of {totalPages}
-                </span>
               </div>
             </>
           )}
